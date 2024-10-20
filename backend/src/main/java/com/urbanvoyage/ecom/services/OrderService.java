@@ -23,7 +23,7 @@ public class OrderService implements OrderServiceInterface {
     public void cancelOrder(String userId , String orderId){
         Order foundOrder = orderRepository.findById(orderId).orElse(null);
         if(foundOrder != null && userId.equals(foundOrder.getOrderId())){
-            foundOrder.setStatus(Order.Status.Cancelled);
+            foundOrder.setStatus("Cancelled");
             orderRepository.save(foundOrder);
         }
     }
@@ -47,7 +47,7 @@ public class OrderService implements OrderServiceInterface {
         }
 
         List<Order> filteredOrders = allOrders.stream()
-                .filter(order -> order.getStatus().name().equalsIgnoreCase(filter))
+                .filter(order -> order.getStatus().equalsIgnoreCase(filter))
                 .toList();
 
         return new ArrayList<>(filteredOrders);

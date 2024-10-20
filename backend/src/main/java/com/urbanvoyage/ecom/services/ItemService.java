@@ -18,8 +18,19 @@ public class ItemService implements ItemServiceInterface {
 
     // Seller
     @Override
-    public void createItem(Item newItem) {
-        itemRepository.save(newItem);
+    public Item createItem(Item newItem) {
+        return itemRepository.save(newItem);
+    }
+
+    @Override
+    public void saveItem(Item item){
+        itemRepository.save(item);
+    }
+
+    @Override
+    public ArrayList<Item> searchItems(String query) {
+        String regex = ".*" + query + ".*"; // Construct the regex for pattern matching
+        return itemRepository.findByNameOrDescriptionRegex(regex); // Call the updated repository method
     }
 
     @Override

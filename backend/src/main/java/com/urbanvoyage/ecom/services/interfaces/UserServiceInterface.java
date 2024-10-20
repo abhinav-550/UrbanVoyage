@@ -8,6 +8,7 @@ public interface UserServiceInterface{
     //Common
     User createUser(User user);
     Optional<User> findUserById(String id);
+    public void saveUser(User user);
     // Normal User
     void updateUser(String id , User updatedUser);
     void changePassword(String id , String password);

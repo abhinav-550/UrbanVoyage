@@ -20,6 +20,11 @@ public class UserService implements UserServiceInterface {
     private UserRepository userRepository;
 
     @Override
+    public void saveUser(User user){
+         userRepository.save(user);
+    }
+
+    @Override
     public User createUser(User user) {
         user.setPassword(bcrypt.encode(user.getPassword()));
         return userRepository.save(user);
@@ -111,6 +116,10 @@ public class UserService implements UserServiceInterface {
             return;
         }
         ArrayList<String> cartItems = foundUser.getCart();
+        if(cartItems == null){
+            cartItems = new ArrayList<String>();
+        }
+
         cartItems.add(itemId);
         foundUser.setCart(cartItems);
         userRepository.save(foundUser);

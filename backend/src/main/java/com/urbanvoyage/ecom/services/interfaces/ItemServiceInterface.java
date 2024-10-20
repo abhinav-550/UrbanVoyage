@@ -10,7 +10,9 @@ public interface ItemServiceInterface {
     Optional<Item> getASingleItem(String itemId);
     ArrayList<Item> getAllItems();
     //Seller
-    public void createItem(Item newItem);
+    public void saveItem(Item item);
+    public ArrayList<Item> searchItems(String query);
+    public Item createItem(Item newItem);
     void updateItemDetails(String itemId, Item updatedItem);
     void deleteItem(String userId, String itemId);
 }

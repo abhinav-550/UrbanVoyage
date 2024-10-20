@@ -4,7 +4,6 @@ import com.urbanvoyage.ecom.utils.Utility;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @Document(collection = "items")
@@ -13,20 +12,20 @@ public class Item {
     private String id;
 
     private String name;
-    private BigDecimal price;
+    private long price;
     private int quantity;
     private ArrayList<String> tags;
     private ArrayList<String> images;
     private String createdAt;
     private String description;
-    private int saleCount;
+    private int saleCount = 0;
     private String sellerId;
 
     // Default constructor
     public Item() {}
 
     // Parameterized constructor
-    public Item(String id, String name, BigDecimal price, int quantity, ArrayList<String> tags, ArrayList<String> images, String description, int saleCount, String sellerId) {
+    public Item(String id, String name, long price, int quantity, ArrayList<String> tags, ArrayList<String> images, String description, int saleCount, String sellerId) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -58,11 +57,11 @@ public class Item {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 

@@ -13,19 +13,16 @@ public class User {
     private String id;
 
     // Enum for roles
-
-    public static enum Role {
-        Admin, Seller, User
-    }
+    // common
+    private String password;
+    private String email;
 
     // Default user fields
     private String PFP;
     private String username;
-    private String email;
-    private String password;
     private String shippingAddress;
-    private ArrayList<String> address = new ArrayList<>();
-    private ArrayList<String> cart = new ArrayList<>();
+    private ArrayList<String> address;
+    private ArrayList<String> cart;
 
     // Seller fields
     private String shopName;
@@ -34,11 +31,11 @@ public class User {
     private String shopWebsite;
     private String shopDescription;
 
-    private Role role;
+    private String role;
 
     public User() {}
 
-    public User(String id, String PFP, String username, String email, String password, ArrayList<String> address, ArrayList<String> cart, String shopName, String shopAddress, ArrayList<String> shopImages, String shopWebsite, String shopDescription,String shippingAddress, Role role) {
+    public User(String id, String PFP, String username, String email, String password, ArrayList<String> address, ArrayList<String> cart, String shopName, String shopAddress, ArrayList<String> shopImages, String shopWebsite, String shopDescription,String shippingAddress, String role) {
         this.id = id;
         this.PFP = PFP;
         this.username = username;
@@ -161,11 +158,11 @@ public class User {
         this.shopDescription = shopDescription;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
     public String getShippingAddress() {

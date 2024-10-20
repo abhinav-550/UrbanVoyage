@@ -2,9 +2,11 @@ package com.urbanvoyage.ecom.repositories;
 
 import com.urbanvoyage.ecom.models.Item;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.Query;
+import java.util.ArrayList;
 
-@Repository
 public interface ItemRepository extends MongoRepository<Item, String> {
 
+    @Query("{ $or: [ { 'name': { $regex: ?0, $options: 'i' } }, { 'description': { $regex: ?0, $options: 'i' } } ] }")
+    ArrayList<Item> findByNameOrDescriptionRegex(String regex);
 }

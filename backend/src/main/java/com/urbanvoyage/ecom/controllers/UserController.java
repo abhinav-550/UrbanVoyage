@@ -27,14 +27,27 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable String id, @RequestBody User updatedUser){
+    public ResponseEntity<String> updateUser(
+            @PathVariable String id,
+            @RequestParam String email,
+            @RequestParam String shippingAddress
+            ) {
+
+        // Find the user by ID
         User foundUser = userService.findUserById(id).orElse(null);
-        if(foundUser == null){
-            return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
+        if (foundUser == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
-        userService.updateUser(id , updatedUser);
-        return new ResponseEntity<String>("User succesfully updated.", HttpStatus.OK);
+
+        foundUser.setEmail(email);
+        foundUser.setShippingAddress(shippingAddress);
+
+        // Save updated user
+        userService.updateUser(id, foundUser);
+
+        return new ResponseEntity<>("User successfully updated.", HttpStatus.OK);
     }
+
 
     @PostMapping("/change-password")
     public ResponseEntity<String> changeUserPassword(@RequestBody PasswordChangeRequest changePassword, HttpServletRequest request){
