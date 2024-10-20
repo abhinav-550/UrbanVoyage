@@ -31,6 +31,11 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
+    public User findUserByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
     public void updateUser(String id, User updatedUser) {
         User foundUser = userRepository.findById(id).orElse(null);
         if (foundUser != null) {
@@ -52,8 +57,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public boolean verifyPassword(String id, String rawPassword) {
-        User foundUser = userRepository.findById(id).orElse(null);
+    public boolean verifyPassword(String username, String rawPassword) {
+        User foundUser = userRepository.findByUsername(username);
         return foundUser != null && bcrypt.matches(rawPassword, foundUser.getPassword());
     }
 

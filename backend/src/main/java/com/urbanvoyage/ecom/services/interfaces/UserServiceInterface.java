@@ -16,6 +16,7 @@ public interface UserServiceInterface{
     void newCartItem(String id, String itemId);
     void deleteCartItem(String id, String itemId);
     void setShippingAddress(String id,String address);
+    public User findUserByUsername(String username);
 
     //Seller Details
     void updatedShopDetails(String id , User updatedShopDetails);

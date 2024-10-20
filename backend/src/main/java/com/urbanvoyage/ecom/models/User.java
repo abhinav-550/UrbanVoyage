@@ -3,6 +3,7 @@ package com.urbanvoyage.ecom.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.File;
 import java.util.ArrayList;
 
 @Document(collection = "users")
